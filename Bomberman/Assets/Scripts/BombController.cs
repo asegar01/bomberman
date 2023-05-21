@@ -11,7 +11,7 @@ public class BombController : MonoBehaviour
     public int bombsRemaining = 3;
     PlayerMovement playerMovement;
     private float offset = 0.3f;
-    private float animationSpeed = 0.1f;
+    private bool isBombActive = false;
 
     [Header("Explosion")]
     public GameObject explosionPrefab;
@@ -43,13 +43,18 @@ public class BombController : MonoBehaviour
 
         yield return new WaitForSeconds(bombFuseTime);
 
-        GameObject explosion = Instantiate(explosionPrefab, currentCell, Quaternion.Euler(-90f, 0f, 180f));
+        Vector3Int newCurrentCell = playerMovement.GetGrid().WorldToCell(bomb.transform.position);
+        Vector3 targetCellCx = playerMovement.GetGrid().GetCellCenterWorld(newCurrentCell);
+        targetCellCx.y = 1.5f;
+        bomb.transform.position = playerMovement.GetGrid().WorldToCell(targetCellCx);
+
+        GameObject explosion = Instantiate(explosionPrefab, targetCellCx, Quaternion.Euler(-90f, 0f, 180f));
         Destroy(explosion, explosionDuration);
 
-        Explode(currentCell, Vector3.forward, explosionRadius);
-        Explode(currentCell, Vector3.right, explosionRadius);
-        Explode(currentCell, Vector3.back, explosionRadius);
-        Explode(currentCell, Vector3.left, explosionRadius);
+        Explode(targetCellCx, Vector3.forward, explosionRadius);
+        Explode(targetCellCx, Vector3.right, explosionRadius);
+        Explode(targetCellCx, Vector3.back, explosionRadius);
+        Explode(targetCellCx, Vector3.left, explosionRadius);
 
         Destroy(bomb);
         bombsRemaining++;

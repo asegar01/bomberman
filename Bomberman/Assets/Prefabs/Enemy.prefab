@@ -811,7 +811,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 3297694678777106642, guid: 459a65cf2103e0d4e9146110b8ac69e0, type: 3}
+  - {fileID: 2100000, guid: 4a5c922d437ce22459bf0ae790ff2554, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1612,10 +1612,9 @@ GameObject:
   - component: {fileID: 7547957326751876455}
   - component: {fileID: 7772463304894991614}
   - component: {fileID: 7772463304894991612}
-  - component: {fileID: 7772463304894991611}
   - component: {fileID: 7772463304894991615}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1677,23 +1676,6 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &7772463304894991611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7202500031267086301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5c20fc52c5211f47b4a47be6a636d78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grid: {fileID: 0}
-  moveSpeed: 26
-  rotationSpeed: 10
-  destructibleLayer: 1
-  indestructibleLayer: 2
 --- !u!114 &7772463304894991615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1711,7 +1693,7 @@ MonoBehaviour:
   bombsRemaining: 3
   explosionPrefab: {fileID: 0}
   explosionDuration: 1
-  explosionRadius: 1
+  explosionRadius: 2
 --- !u!1 &7218076345145642633
 GameObject:
   m_ObjectHideFlags: 0

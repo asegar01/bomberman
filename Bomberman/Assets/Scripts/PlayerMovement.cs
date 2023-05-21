@@ -21,6 +21,11 @@ public class PlayerMovement : MonoBehaviour
         //anim = GetComponent<Animation>();
     }
 
+    public Grid GetGrid()
+    {
+        return grid;
+    }
+
     public Vector3 GetCurrentCell()
     {
         //Vector3 cell = grid.GetCellCenterWorld(currentCell);
