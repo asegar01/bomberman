@@ -20,13 +20,6 @@ public class EndangeredCondition : Conditional
         // Obtener la posición actual
         Vector3 currentPosition = transform.position;
 
-        Debug.Log("AAAAAAAAAAAA");
-
-        Debug.DrawRay(currentPosition, Vector3.forward, Color.red);
-        Debug.DrawRay(currentPosition, Vector3.back, Color.red);
-        Debug.DrawRay(currentPosition, Vector3.left, Color.red);
-        Debug.DrawRay(currentPosition, Vector3.right, Color.red);
-
         // Realizar un raycast en cada direccion y comprobar si hay una bomba dentro del rango de la explosion
         if (RangeBomb(currentPosition, Vector3.forward) ||
             RangeBomb(currentPosition, Vector3.back) ||
@@ -42,13 +35,8 @@ public class EndangeredCondition : Conditional
     // Comprobar si hay una bomba dentro del rango de la explosion en una direccion específica
     private bool RangeBomb(Vector3 origin, Vector3 direction)
     {
-        RaycastHit hit;
-        if (Physics.Raycast(origin, direction, out hit, radius, LayerMask.NameToLayer("Bomb")))
-        {
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Bomb"))
-                return true;
-        }
-
+        RaycastHit[] hits = Physics.RaycastAll(origin, direction, radius, LayerMask.GetMask("Bomb"));
+        if (hits.Length > 0) return true;
         return false;
     }
 }
