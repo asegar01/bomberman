@@ -11,6 +11,7 @@ public class BombController : MonoBehaviour
     public int bombsRemaining = 3;
     PlayerMovement playerMovement;
     private float offset = 0.3f;
+    private float animationSpeed = 0.1f;
 
     [Header("Explosion")]
     public GameObject explosionPrefab;
@@ -66,6 +67,12 @@ public class BombController : MonoBehaviour
             // Verificar si el objeto se puede atravesar
             if (collider.gameObject.layer == LayerMask.NameToLayer("Unbreakable"))
                 return;
+
+            if (collider.gameObject.layer == LayerMask.NameToLayer("Breakable"))
+            {
+                Destroy(collider.gameObject);
+                return;
+            }
         }
 
         GameObject explosion = Instantiate(explosionPrefab, position, Quaternion.Euler(-90f, 0f, 180f));

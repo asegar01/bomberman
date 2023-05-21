@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6662947592339610764}
   - component: {fileID: 7243378426795562089}
   - component: {fileID: 8354821562759186471}
+  - component: {fileID: 975757545417012476}
+  - component: {fileID: -5641275136264814205}
   m_Layer: 8
   m_Name: Bomb
   m_TagString: Untagged
@@ -115,3 +117,39 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 1
+--- !u!111 &975757545417012476
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5149716609058602329}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: beeed0841cbecec4b94c5e295ff5d309, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: beeed0841cbecec4b94c5e295ff5d309, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!95 &-5641275136264814205
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5149716609058602329}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5e8c87184d180004baccf53ce875c82d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
