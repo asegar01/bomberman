@@ -98,7 +98,5 @@ public class PlayerMovement : MonoBehaviour
             targetCellCx.y = playerHeight;
             transform.position = Vector3.Lerp(transform.position, targetCellCx, moveSpeed * Time.fixedDeltaTime);
         }
-
-        Debug.Log(currentCell);
     }
 }

@@ -11,7 +11,7 @@ public class BombController : MonoBehaviour
     public int bombsRemaining = 3;
     PlayerMovement playerMovement;
     private float offset = 0.3f;
-    private bool isBombActive = false;
+    public List<GameObject> bombList;
 
     [Header("Explosion")]
     public GameObject explosionPrefab;
@@ -39,6 +39,7 @@ public class BombController : MonoBehaviour
         spawnPoint.x -= offset;
         spawnPoint.z += offset;
         GameObject bomb = Instantiate(bombPrefab, spawnPoint, Quaternion.identity);
+        bombList.Add(bomb);
         bombsRemaining--;
 
         yield return new WaitForSeconds(bombFuseTime);
@@ -57,6 +58,7 @@ public class BombController : MonoBehaviour
         Explode(targetCellCx, Vector3.left, explosionRadius);
 
         Destroy(bomb);
+        bombList.Remove(bomb);
         bombsRemaining++;
     }
 

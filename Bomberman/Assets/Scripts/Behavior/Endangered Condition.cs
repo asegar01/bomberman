@@ -6,13 +6,49 @@ using BehaviorDesigner.Runtime.Tasks;
 // Indica si se encuentra amenzado por la explosion de alguna bomba
 public class EndangeredCondition : Conditional
 {
+    BombController bombController;
+    private int radius;
+
     public override void OnAwake()
     {
-        
+        bombController = GetComponent<BombController>();
+        radius = bombController.explosionRadius;
     }
 
     public override TaskStatus OnUpdate()
     {
-        return TaskStatus.Success;
+        // Obtener la posición actual
+        Vector3 currentPosition = transform.position;
+
+        Debug.Log("AAAAAAAAAAAA");
+
+        Debug.DrawRay(currentPosition, Vector3.forward, Color.red);
+        Debug.DrawRay(currentPosition, Vector3.back, Color.red);
+        Debug.DrawRay(currentPosition, Vector3.left, Color.red);
+        Debug.DrawRay(currentPosition, Vector3.right, Color.red);
+
+        // Realizar un raycast en cada direccion y comprobar si hay una bomba dentro del rango de la explosion
+        if (RangeBomb(currentPosition, Vector3.forward) ||
+            RangeBomb(currentPosition, Vector3.back) ||
+            RangeBomb(currentPosition, Vector3.left) ||
+            RangeBomb(currentPosition, Vector3.right))
+        {
+            return TaskStatus.Success;
+        }
+
+        return TaskStatus.Failure;
+    }
+
+    // Comprobar si hay una bomba dentro del rango de la explosion en una direccion específica
+    private bool RangeBomb(Vector3 origin, Vector3 direction)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(origin, direction, out hit, radius, LayerMask.NameToLayer("Bomb")))
+        {
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Bomb"))
+                return true;
+        }
+
+        return false;
     }
 }
