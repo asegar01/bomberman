@@ -129464,7 +129464,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7772463304894991615, guid: 484a6cc3315dd574ea2496378b1369c5, type: 3}
       propertyPath: bombFuseTime
-      value: 300
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772463304894991615, guid: 484a6cc3315dd574ea2496378b1369c5, type: 3}
+      propertyPath: explosionPrefab
+      value: 
+      objectReference: {fileID: 3991653085984235134, guid: 3b2c18d0edf8c2e4c8d7194a90942b6c, type: 3}
+    - target: {fileID: 7772463304894991615, guid: 484a6cc3315dd574ea2496378b1369c5, type: 3}
+      propertyPath: explosionRadius
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 484a6cc3315dd574ea2496378b1369c5, type: 3}
