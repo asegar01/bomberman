@@ -21,6 +21,14 @@ public class PlayerMovement : MonoBehaviour
         //anim = GetComponent<Animation>();
     }
 
+    public Vector3 GetCurrentCell()
+    {
+        //Vector3 cell = grid.GetCellCenterWorld(currentCell);
+        Vector3 cell = grid.GetCellCenterWorld(currentCell);
+        cell.y = playerHeight * 2;
+        return cell;
+    }
+
     private void FixedUpdate()
     {
         // Input del jugador
@@ -85,5 +93,7 @@ public class PlayerMovement : MonoBehaviour
             targetCellCx.y = playerHeight;
             transform.position = Vector3.Lerp(transform.position, targetCellCx, moveSpeed * Time.fixedDeltaTime);
         }
+
+        Debug.Log(currentCell);
     }
 }
