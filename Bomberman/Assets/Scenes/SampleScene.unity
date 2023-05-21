@@ -4020,6 +4020,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 145081261514426693, guid: 4f19e2a6e5a2fa142a0c86f6fb57ed13, type: 3}
   m_PrefabInstance: {fileID: 378277576}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &381288729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7202500031267086301, guid: b203a08c4fe0c4442aaf27be78efa027, type: 3}
+  m_PrefabInstance: {fileID: 1507455069}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &381288734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381288729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startWhenEnabled: 1
+  asynchronousLoad: 0
+  pauseWhenDisabled: 0
+  restartWhenComplete: 0
+  logTaskChanges: 0
+  group: 0
+  resetValuesOnRestart: 0
+  externalBehavior: {fileID: 0}
+  mBehaviorSource:
+    behaviorName: Behavior
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: 
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 1
 --- !u!1001 &388008182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17919,7 +17964,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: b203a08c4fe0c4442aaf27be78efa027, type: 3}
 --- !u!1001 &1519198567
 PrefabInstance:
