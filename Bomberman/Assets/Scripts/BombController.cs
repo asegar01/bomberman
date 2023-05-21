@@ -55,6 +55,12 @@ public class BombController : MonoBehaviour
         bombsRemaining++;
     }
 
+    private void CreateExplosion(Vector3 position)
+    {
+        GameObject explosion = Instantiate(explosionPrefab, position, Quaternion.Euler(-90f, 0f, 180f));
+        Destroy(explosion, explosionDuration);
+    }
+
     // Explosion de la bomba
     private void Explode(Vector3 position, Vector3 direction, int length)
     {
@@ -71,12 +77,12 @@ public class BombController : MonoBehaviour
             if (collider.gameObject.layer == LayerMask.NameToLayer("Breakable"))
             {
                 Destroy(collider.gameObject);
+                CreateExplosion(position);
                 return;
             }
         }
 
-        GameObject explosion = Instantiate(explosionPrefab, position, Quaternion.Euler(-90f, 0f, 180f));
-        Destroy(explosion, explosionDuration);
+        CreateExplosion(position);
 
         Explode(position, direction, length - 1);
     }
