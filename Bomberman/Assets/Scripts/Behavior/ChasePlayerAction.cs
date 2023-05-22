@@ -46,8 +46,6 @@ public class ChasePlayerAction : Action
         transform.position = Vector3.Lerp(transform.position, targetCellCenter, moveSpeed);
         if (Vector3.Distance(transform.position, targetCellCenter) <= 0.1f)
             currentCell = targetCell;
-
-        //yield return new WaitForSeconds(timeWait);
     }
 
     private bool FinishChase()

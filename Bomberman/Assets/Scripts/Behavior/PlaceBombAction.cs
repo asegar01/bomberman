@@ -22,7 +22,7 @@ public class PlaceBombAction : Action
         Grid grid = playerMovement.GetGrid();
         Vector3 bombPosition = grid.GetCellCenterWorld(grid.WorldToCell(transform.position));
         bombPosition.y = playerMovement.GetHeight() * 2;
-        bombController.StartCoroutine(bombController.CreateBomb(bombPosition));
+        bombController.StartCoroutine(bombController.CreateEnemyBomb(bombPosition));
         return TaskStatus.Success;
     }
 }

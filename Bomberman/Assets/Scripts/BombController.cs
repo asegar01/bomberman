@@ -11,7 +11,7 @@ public class BombController : MonoBehaviour
     public int bombsRemaining = 3;
     PlayerMovement playerMovement;
     private float offset = 0.3f;
-    public List<GameObject> bombList;
+    public bool isEnemyBombActive = false;
 
     [Header("Explosion")]
     public GameObject explosionPrefab;
@@ -39,7 +39,6 @@ public class BombController : MonoBehaviour
         spawnPoint.x -= offset;
         spawnPoint.z += offset;
         GameObject bomb = Instantiate(bombPrefab, spawnPoint, Quaternion.identity);
-        bombList.Add(bomb);
         bombsRemaining--;
 
         yield return new WaitForSeconds(bombFuseTime);
@@ -49,17 +48,41 @@ public class BombController : MonoBehaviour
         targetCellCx.y = 1.5f;
         bomb.transform.position = playerMovement.GetGrid().WorldToCell(targetCellCx);
 
-        GameObject explosion = Instantiate(explosionPrefab, targetCellCx, Quaternion.Euler(-90f, 0f, 180f));
-        Destroy(explosion, explosionDuration);
-
-        Explode(targetCellCx, Vector3.forward, explosionRadius);
-        Explode(targetCellCx, Vector3.right, explosionRadius);
-        Explode(targetCellCx, Vector3.back, explosionRadius);
-        Explode(targetCellCx, Vector3.left, explosionRadius);
+        SpawnBomb(targetCellCx);
 
         Destroy(bomb);
-        bombList.Remove(bomb);
         bombsRemaining++;
+    }
+
+    private void SpawnBomb(Vector3 targetPos)
+    {
+        CreateExplosion(targetPos);
+
+        Explode(targetPos, Vector3.forward, explosionRadius);
+        Explode(targetPos, Vector3.right, explosionRadius);
+        Explode(targetPos, Vector3.back, explosionRadius);
+        Explode(targetPos, Vector3.left, explosionRadius);
+    }
+
+    public IEnumerator CreateEnemyBomb(Vector3 position)
+    {
+        Vector3 spawnPoint = position;
+        spawnPoint.x -= offset;
+        spawnPoint.z += offset;
+        GameObject bomb = Instantiate(bombPrefab, spawnPoint, Quaternion.identity);
+        isEnemyBombActive = true;
+
+        yield return new WaitForSeconds(bombFuseTime);
+
+        Vector3Int newCurrentCell = playerMovement.GetGrid().WorldToCell(bomb.transform.position);
+        Vector3 targetCellCx = playerMovement.GetGrid().GetCellCenterWorld(newCurrentCell);
+        targetCellCx.y = 1.5f;
+        bomb.transform.position = playerMovement.GetGrid().WorldToCell(targetCellCx);
+
+        SpawnBomb(targetCellCx);
+
+        Destroy(bomb);
+        isEnemyBombActive = false;
     }
 
     private void CreateExplosion(Vector3 position)
