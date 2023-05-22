@@ -7,11 +7,13 @@ using BehaviorDesigner.Runtime.Tasks;
 public class EndangeredCondition : Conditional
 {
     BombController bombController;
+    PlayerMovement playerMovement;
     private int radius;
 
     public override void OnAwake()
     {
         bombController = GetComponent<BombController>();
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         radius = bombController.explosionRadius;
     }
 
@@ -19,6 +21,7 @@ public class EndangeredCondition : Conditional
     {
         // Obtener la posición actual
         Vector3 currentPosition = transform.position;
+        currentPosition.y += playerMovement.GetHeight() / 2;
 
         // Realizar un raycast en cada direccion y comprobar si hay una bomba dentro del rango de la explosion
         if (RangeBomb(currentPosition, Vector3.forward) ||
@@ -35,8 +38,26 @@ public class EndangeredCondition : Conditional
     // Comprobar si hay una bomba dentro del rango de la explosion en una direccion específica
     private bool RangeBomb(Vector3 origin, Vector3 direction)
     {
-        RaycastHit[] hits = Physics.RaycastAll(origin, direction, radius, LayerMask.GetMask("Bomb"));
-        if (hits.Length > 0) return true;
+        Debug.DrawRay(origin, direction * radius, Color.red);
+
+        int layerMask = ~(LayerMask.GetMask("Player")); // Excluir la capa del jugador del raycast
+
+        // Comprueba si hay una bomba en la posicion actual
+        Collider[] colliders = Physics.OverlapSphere(origin, 0.1f);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.gameObject.layer == LayerMask.NameToLayer("Bomb"))
+                return true;
+        }
+
+        // Comprueba si hay una bomba que amenace al enemigo
+        RaycastHit[] hits = Physics.RaycastAll(origin, direction, radius, layerMask);
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Bomb"))
+                return true;
+        }
+
         return false;
     }
 }

@@ -72,7 +72,7 @@ public class ChasePlayerAction : Action
 
     private bool CheckObstacles(Vector3 currentCell, Vector3 direction)
     {
-        Debug.DrawRay(transform.position, direction, Color.red);
+        //Debug.DrawRay(transform.position, direction, Color.red);
 
         Grid grid = playerMovement.GetGrid();
         Vector3 dir = new Vector3(Mathf.Round(direction.x), 0, Mathf.Round(direction.z));
