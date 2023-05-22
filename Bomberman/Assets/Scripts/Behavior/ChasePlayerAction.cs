@@ -12,9 +12,11 @@ public class ChasePlayerAction : Action
     private Vector3Int targetCell;
     private Vector3 targetCellCenter;
     private Vector3Int currentCell;       // Celda actual en la que se encuentra el enemigo
-    private float moveSpeed = 27f;
+    private float moveSpeed = 1.0f;
+    private float currentTime = 0.0f;
+    private float thinkTime = 2.0f;
     private float rotationSpeed = 10f;
-    public float timeWait = 1f; 
+    public float timeWait = 10f; 
 
     public override void OnStart()
     {
@@ -26,29 +28,32 @@ public class ChasePlayerAction : Action
 
     public override TaskStatus OnUpdate()
     {
+        currentTime += Time.deltaTime;
+
         if (FinishChase())
             return TaskStatus.Success;
 
-        StartCoroutine(MoveCell());
+        MoveCell();
 
         return TaskStatus.Running;
     }
 
-    private IEnumerator MoveCell()
+    private void MoveCell()
     {
+        if (currentTime < thinkTime) return;
+        currentTime = 0.0f;
+
         transform.position = Vector3.Lerp(transform.position, targetCellCenter, moveSpeed);
         if (Vector3.Distance(transform.position, targetCellCenter) <= 0.1f)
             currentCell = targetCell;
 
-        yield return new WaitForSeconds(timeWait);
+        //yield return new WaitForSeconds(timeWait);
     }
 
     private bool FinishChase()
     {
         Vector3 currentCell = playerMovement.GetGrid().WorldToCell(transform.position);
         Vector3 distance = playerCellPosition - currentCell;
-
-        Debug.Log(distance);
 
         // Comprobar si hay obstaculos en las direcciones de movimiento
         if (Mathf.Abs(distance.x) > Mathf.Abs(distance.z))
@@ -69,16 +74,17 @@ public class ChasePlayerAction : Action
 
     private bool CheckObstacles(Vector3 currentCell, Vector3 direction)
     {
+        Debug.DrawRay(transform.position, direction, Color.red);
+
         Grid grid = playerMovement.GetGrid();
         Vector3 dir = new Vector3(Mathf.Round(direction.x), 0, Mathf.Round(direction.z));
         Vector3 nextCell = currentCell + dir;
+        Vector3Int nextCellInt = new Vector3Int((int)nextCell.x, (int)nextCell.y, (int)nextCell.z);
 
         targetCell = grid.WorldToCell(nextCell);
-        Debug.Log(direction);
-        Debug.Log(nextCell);
 
         // Comprobar si hay un obstáculo en la siguiente casilla
-        Collider[] colliders = Physics.OverlapBox(nextCell, grid.cellSize / 2f);
+        Collider[] colliders = Physics.OverlapBox(transform.position + direction, grid.cellSize / 2f);
         foreach (Collider collider in colliders)
         {
             if (collider.gameObject.layer == LayerMask.NameToLayer("Breakable") ||
@@ -86,7 +92,7 @@ public class ChasePlayerAction : Action
                 return true;
         }
 
-        targetCellCenter = grid.GetCellCenterWorld(targetCell);
+        targetCellCenter = grid.GetCellCenterWorld(nextCellInt);
         targetCellCenter.y = 0.725f;
 
         return false;
