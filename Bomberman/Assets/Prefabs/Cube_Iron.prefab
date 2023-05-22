@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 873270440534141360}
   - component: {fileID: 3169001002568392058}
   - component: {fileID: -6796873506845947600}
-  m_Layer: 0
-  m_Name: Cube_Dirt
+  m_Layer: 7
+  m_Name: Cube_Iron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

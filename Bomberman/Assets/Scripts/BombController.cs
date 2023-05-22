@@ -7,7 +7,7 @@ public class BombController : MonoBehaviour
     [Header("Bomb")]
     public GameObject bombPrefab;
     private KeyCode inputKey = KeyCode.Space;
-    public float bombFuseTime = 3f;
+    public float bombFuseTime = 3.5f;
     public int bombsRemaining = 3;
     PlayerMovement playerMovement;
     private float offset = 0.3f;
@@ -15,7 +15,7 @@ public class BombController : MonoBehaviour
 
     [Header("Explosion")]
     public GameObject explosionPrefab;
-    public float explosionDuration = 1f;
+    public float explosionDuration = 0.5f;
     public int explosionRadius = 2;
 
     private void Start()

@@ -1614,9 +1614,12 @@ GameObject:
   - component: {fileID: 7772463304894991612}
   - component: {fileID: 7772463304894991611}
   - component: {fileID: 7772463304894991615}
+  - component: {fileID: 7772463304894991617}
+  - component: {fileID: 7772463304894991618}
+  - component: {fileID: 7772463304894991619}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1655,7 +1658,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 7202500031267086301}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.4997746
   m_Height: 1.8841044
   m_Direction: 1
@@ -1690,7 +1693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
-  moveSpeed: 26
+  moveSpeed: 27
   rotationSpeed: 10
   destructibleLayer: 1
   indestructibleLayer: 2
@@ -1707,11 +1710,61 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bombPrefab: {fileID: 5149716609058602329, guid: b7413e5e04231fd4bbe3d4fc3caedbab, type: 3}
-  bombFuseTime: 3
+  bombFuseTime: 3.5
   bombsRemaining: 3
-  explosionPrefab: {fileID: 0}
+  isEnemyBombActive: 0
+  explosionPrefab: {fileID: 3991653085984235134, guid: 3b2c18d0edf8c2e4c8d7194a90942b6c, type: 3}
   explosionDuration: 1
-  explosionRadius: 1
+  explosionRadius: 2
+--- !u!54 &7772463304894991617
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7202500031267086301}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 1
+--- !u!65 &7772463304894991618
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7202500031267086301}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6715155, y: 1.5000001, z: 0.6890273}
+  m_Center: {x: 0.0075753527, y: 0.8, z: -0.006761153}
+--- !u!95 &7772463304894991619
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7202500031267086301}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &7218076345145642633
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,6 @@ public class EndangeredCondition : Conditional
         Vector3 currentPosition = transform.position;
         currentPosition.y += playerMovement.GetHeight() / 2;
 
-        // Realizar un raycast en cada direccion y comprobar si hay una bomba dentro del rango de la explosion
         if (RangeBomb(currentPosition))
         {
             return TaskStatus.Success;
@@ -30,7 +29,7 @@ public class EndangeredCondition : Conditional
         return TaskStatus.Failure;
     }
 
-    // Comprueba si hay alguna bomba dentro del rango de la explosion en una direccion específica
+    // Comprobar si hay alguna bomba que amenace al enemigo
     private bool RangeBomb(Vector3 origin)
     {
         return bombController.RangeBomb(origin);
