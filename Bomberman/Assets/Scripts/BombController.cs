@@ -32,9 +32,12 @@ public class BombController : MonoBehaviour
     }
 
     // Comprueba si hay alguna bomba dentro del rango de la explosion en una direccion específica
-    public bool RangeBomb(Vector3 origin, Vector3 direction)
+    public bool RangeBomb(Vector3 origin)
     {
-        Debug.DrawRay(origin, direction * explosionRadius, Color.red);
+        Debug.DrawRay(origin, Vector3.forward * explosionRadius, Color.red);
+        Debug.DrawRay(origin, Vector3.back * explosionRadius, Color.red);
+        Debug.DrawRay(origin, Vector3.left * explosionRadius, Color.red);
+        Debug.DrawRay(origin, Vector3.right * explosionRadius, Color.red);
 
         int layerMask = ~(LayerMask.GetMask("Player")); // Excluir la capa del jugador del raycast
 
@@ -46,13 +49,41 @@ public class BombController : MonoBehaviour
                 return true;
         }
 
-        // Comprueba si hay alguna bomba que amenace al enemigo
-        RaycastHit[] hits = Physics.RaycastAll(origin, direction, explosionRadius, layerMask);
-        foreach (RaycastHit hit in hits)
+        // Comprueba si hay alguna bomba que amenace al enemigo en alguna direccion
+        RaycastHit[] forwardHits = Physics.RaycastAll(origin, Vector3.forward, explosionRadius, layerMask);
+        foreach (RaycastHit hit in forwardHits)
         {
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Bomb"))
                 return true;
         }
+
+        RaycastHit[] backHits = Physics.RaycastAll(origin, Vector3.back, explosionRadius, layerMask);
+        foreach (RaycastHit hit in backHits)
+        {
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Bomb"))
+                return true;
+        }
+
+        RaycastHit[] leftHits = Physics.RaycastAll(origin, Vector3.left, explosionRadius, layerMask);
+        foreach (RaycastHit hit in leftHits)
+        {
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Bomb"))
+                return true;
+        }
+
+        RaycastHit[] rightHits = Physics.RaycastAll(origin, Vector3.right, explosionRadius, layerMask);
+        foreach (RaycastHit hit in rightHits)
+        {
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Bomb"))
+                return true;
+        }
+
+        //RaycastHit[] hits = Physics.RaycastAll(origin, direction, explosionRadius, layerMask);
+        //foreach (RaycastHit hit in hits)
+        //{
+        //    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Bomb"))
+        //        return true;
+        //}
 
         return false;
     }

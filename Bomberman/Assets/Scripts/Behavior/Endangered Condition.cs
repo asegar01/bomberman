@@ -22,10 +22,7 @@ public class EndangeredCondition : Conditional
         currentPosition.y += playerMovement.GetHeight() / 2;
 
         // Realizar un raycast en cada direccion y comprobar si hay una bomba dentro del rango de la explosion
-        if (RangeBomb(currentPosition, Vector3.forward) ||
-            RangeBomb(currentPosition, Vector3.back) ||
-            RangeBomb(currentPosition, Vector3.left) ||
-            RangeBomb(currentPosition, Vector3.right))
+        if (RangeBomb(currentPosition))
         {
             return TaskStatus.Success;
         }
@@ -34,8 +31,8 @@ public class EndangeredCondition : Conditional
     }
 
     // Comprueba si hay alguna bomba dentro del rango de la explosion en una direccion específica
-    private bool RangeBomb(Vector3 origin, Vector3 direction)
+    private bool RangeBomb(Vector3 origin)
     {
-        return bombController.RangeBomb(origin, direction);
+        return bombController.RangeBomb(origin);
     }
 }
