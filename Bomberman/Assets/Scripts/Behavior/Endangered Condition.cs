@@ -8,13 +8,11 @@ public class EndangeredCondition : Conditional
 {
     BombController bombController;
     PlayerMovement playerMovement;
-    private int radius;
 
     public override void OnAwake()
     {
         bombController = GetComponent<BombController>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        radius = bombController.explosionRadius;
     }
 
     public override TaskStatus OnUpdate()
@@ -35,29 +33,9 @@ public class EndangeredCondition : Conditional
         return TaskStatus.Failure;
     }
 
-    // Comprobar si hay una bomba dentro del rango de la explosion en una direccion específica
+    // Comprueba si hay alguna bomba dentro del rango de la explosion en una direccion específica
     private bool RangeBomb(Vector3 origin, Vector3 direction)
     {
-        Debug.DrawRay(origin, direction * radius, Color.red);
-
-        int layerMask = ~(LayerMask.GetMask("Player")); // Excluir la capa del jugador del raycast
-
-        // Comprueba si hay una bomba en la posicion actual
-        Collider[] colliders = Physics.OverlapSphere(origin, 0.1f);
-        foreach (Collider collider in colliders)
-        {
-            if (collider.gameObject.layer == LayerMask.NameToLayer("Bomb"))
-                return true;
-        }
-
-        // Comprueba si hay una bomba que amenace al enemigo
-        RaycastHit[] hits = Physics.RaycastAll(origin, direction, radius, layerMask);
-        foreach (RaycastHit hit in hits)
-        {
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Bomb"))
-                return true;
-        }
-
-        return false;
+        return bombController.RangeBomb(origin, direction);
     }
 }

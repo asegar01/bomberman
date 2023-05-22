@@ -6,9 +6,11 @@ using BehaviorDesigner.Runtime.Tasks;
 // Busca un lugar seguro
 public class ChaseSafePlaceAction : Action
 {
+    EndangeredCondition endangeredCondition;
+
     public override void OnStart()
     {
-
+        
     }
 
     public override TaskStatus OnUpdate()
