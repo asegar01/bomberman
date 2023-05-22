@@ -27,15 +27,15 @@ public class BombController : MonoBehaviour
     {
         if (Input.GetKeyDown(inputKey) && bombsRemaining > 0)
         {
-            StartCoroutine(CreateBomb());
+            StartCoroutine(CreateBomb(playerMovement.GetCurrentCell()));
         }
     }
 
     // Instancia una bomba en la posicion del jugador
-    private IEnumerator CreateBomb()
+    public IEnumerator CreateBomb(Vector3 position)
     {
-        Vector3 currentCell = playerMovement.GetCurrentCell();
-        Vector3 spawnPoint = currentCell;
+        //Vector3 currentCell = playerMovement.GetCurrentCell();
+        Vector3 spawnPoint = position;
         spawnPoint.x -= offset;
         spawnPoint.z += offset;
         GameObject bomb = Instantiate(bombPrefab, spawnPoint, Quaternion.identity);

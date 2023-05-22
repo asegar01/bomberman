@@ -26,6 +26,11 @@ public class PlayerMovement : MonoBehaviour
         return grid;
     }
 
+    public float GetHeight()
+    {
+        return playerHeight;
+    }
+
     public Vector3 GetCurrentCell()
     {
         Vector3 cell = grid.GetCellCenterWorld(currentCell);
