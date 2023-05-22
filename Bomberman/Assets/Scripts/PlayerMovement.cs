@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public Grid grid;
-    public float moveSpeed = 20f;          // Velocidad de movimiento del jugador
+    public float moveSpeed = 27f;          // Velocidad de movimiento del jugador
     public float rotationSpeed = 10f;      // Velocidad de rotacion del jugador
     public int destructibleLayer = 6;
     public int indestructibleLayer = 7;
@@ -28,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 GetCurrentCell()
     {
-        //Vector3 cell = grid.GetCellCenterWorld(currentCell);
         Vector3 cell = grid.GetCellCenterWorld(currentCell);
         cell.y = playerHeight * 2;
         return cell;

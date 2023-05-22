@@ -93,12 +93,4 @@ public class BombController : MonoBehaviour
 
         Explode(position, direction, length - 1);
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Bomb"))
-        {
-            other.isTrigger = false;
-        }
-    }
 }
