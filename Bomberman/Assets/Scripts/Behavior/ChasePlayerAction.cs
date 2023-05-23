@@ -16,7 +16,9 @@ public class ChasePlayerAction : Action
     private float currentTime = 0.0f;
     private float thinkTime = 2.0f;
     private float rotationSpeed = 10f;
-    public float timeWait = 10f; 
+    public float timeWait = 10f;
+    private AStarPathfinder pathfinder;
+    private Grid grid;
 
     public override void OnStart()
     {
@@ -24,6 +26,7 @@ public class ChasePlayerAction : Action
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         playerCellPosition = playerMovement.GetCurrentCell();
         currentCell = playerMovement.GetGrid().WorldToCell(transform.position);
+        grid = playerMovement.GetGrid();
     }
 
     public override TaskStatus OnUpdate()
@@ -91,8 +94,28 @@ public class ChasePlayerAction : Action
                 return true;
         }
 
+        // Comprobar si se puede encontrar un camino
+        //pathfinder = new AStarPathfinder(grid);
+
+        //Vector3Int playerCellInt = grid.WorldToCell(playerCellPosition);
+        //Vector3Int currentCellInt = grid.WorldToCell(currentCell);
+        //List<Vector3Int> path = pathfinder.FindPath(currentCellInt, playerCellInt);
+
+        //if (path == null || path.Count == 0)
+        //{
+
+        //    // No se encuentra un camino directo, quedarse en la posicion mas cercana
+        //    targetCellCenter = GetClosestCell(currentCellInt, playerCellPosition);
+        //    return true;
+        //}
+
         targetCellCenter = nextCell;
 
         return false;
+    }
+
+    private Vector3 GetClosestCell(Vector3Int startCell, Vector3 targetPosition)
+    {
+        return new Vector3();
     }
 }
