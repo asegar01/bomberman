@@ -1617,6 +1617,7 @@ GameObject:
   - component: {fileID: 7772463304894991617}
   - component: {fileID: 7772463304894991618}
   - component: {fileID: 7772463304894991619}
+  - component: {fileID: 1865236349}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1714,7 +1715,7 @@ MonoBehaviour:
   bombsRemaining: 3
   isEnemyBombActive: 0
   explosionPrefab: {fileID: 3991653085984235134, guid: 3b2c18d0edf8c2e4c8d7194a90942b6c, type: 3}
-  explosionDuration: 1
+  explosionDuration: 0.5
   explosionRadius: 2
 --- !u!54 &7772463304894991617
 Rigidbody:
@@ -1765,6 +1766,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &1865236349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7202500031267086301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4389695d55d88874bb98cab031df230b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7218076345145642633
 GameObject:
   m_ObjectHideFlags: 0

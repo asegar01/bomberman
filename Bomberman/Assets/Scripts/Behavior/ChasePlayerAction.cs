@@ -15,7 +15,7 @@ public class ChasePlayerAction : Action
     private float moveSpeed = 1.0f;
     private float currentTime = 0.0f;
     private float thinkTime = 2.0f;
-    private float rotationSpeed = 10f;
+    private float rotationSpeed = 50f;
     public float timeWait = 10f;
     private AStarPathfinder pathfinder;
     private Grid grid;
@@ -43,14 +43,16 @@ public class ChasePlayerAction : Action
 
     private void MoveCell()
     {
+        // Tiempo de reaccion
         if (currentTime < thinkTime) return;
         currentTime = 0.0f;
 
         // Rotacion del enemigo
-        //Vector3 dir = (targetCellCenter - transform.position).normalized;
-        //Quaternion targetRotation = Quaternion.LookRotation(dir);
-        //transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
+        Vector3 dir = (targetCellCenter - transform.position).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(dir);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
 
+        // Movimiento del enemigo
         transform.position = Vector3.Lerp(transform.position, targetCellCenter, moveSpeed);
         if (Vector3.Distance(transform.position, targetCellCenter) <= 0.1f)
             currentCell = targetCell;
@@ -62,21 +64,28 @@ public class ChasePlayerAction : Action
         Vector3 currentPosition = transform.position;
         Vector3 distance = playerCellPosition - currentPosition;
 
-        // Comprobar si hay obstaculos en las direcciones de movimiento
+        // Obtiene la direccion de movimiento
+        Vector3 primaryDirection, secondaryDirection;
+
         if (Mathf.Abs(distance.x) > Mathf.Abs(distance.z))
         {
-            if((distance.x < 0 && CheckObstacles(currentPosition, Vector3.left)) ||
-                (distance.x > 0 && CheckObstacles(currentPosition, Vector3.right)))
-                return true;
+            primaryDirection = distance.x < 0 ? Vector3.left : Vector3.right;
+            secondaryDirection = distance.z < 0 ? Vector3.back : Vector3.forward;
         }
         else
         {
-            if ((distance.z < 0 && CheckObstacles(currentPosition, Vector3.back)) ||
-                (distance.z > 0 && CheckObstacles(currentPosition, Vector3.forward)))
-                return true;
+            primaryDirection = distance.z < 0 ? Vector3.back : Vector3.forward;
+            secondaryDirection = distance.x < 0 ? Vector3.left : Vector3.right;
         }
 
-        return false;
+        // Comprueba si hay obstaculos en esas posiciones
+        if (!CheckObstacles(currentPosition, primaryDirection))
+            return false;
+
+        else if (!CheckObstacles(currentPosition, secondaryDirection))
+            return false;
+
+        return true;
     }
 
     private bool CheckObstacles(Vector3 currentCell, Vector3 direction)
