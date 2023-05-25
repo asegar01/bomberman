@@ -11,12 +11,13 @@ public class ChasePlayerAction : Action
     private Vector3 playerCellPosition;
     private Vector3Int targetCell;
     private Vector3 targetCellCenter;
-    private Vector3Int currentCell;       // Celda actual en la que se encuentra el enemigo
+    private Vector3Int currentCell;
     private float moveSpeed = 1.0f;
     private float currentTime = 0.0f;
     private float thinkTime = 1.0f;
     private float rotationSpeed = 50.0f;
     public float timeWait = 10.0f;
+    private float offset = 0.3f;
     private AStarPathfinder pathfinder;
     private Grid grid;
 
@@ -63,7 +64,7 @@ public class ChasePlayerAction : Action
         // Obtener la posición actual
         Vector3 currentPosition = transform.position;
         Vector3 distance = playerCellPosition - currentPosition;
-        if(distance.magnitude < grid.cellSize.x + 0.3f) return true;
+        if(distance.magnitude < grid.cellSize.x + offset) return true;
 
         // Obtiene la direccion de movimiento
         Vector3 primaryDirection, secondaryDirection;

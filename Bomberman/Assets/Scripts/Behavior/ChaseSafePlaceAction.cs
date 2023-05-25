@@ -42,18 +42,13 @@ public class ChaseSafePlaceAction : Action
             Vector3 closestCellCenter = grid.GetCellCenterWorld(grid.WorldToCell(closestCell));
             closestCellCenter.y = 0.725f;
 
-            //StartCoroutine(MoveToTarget(closestCellCenter));
-
-            Vector3 distance = closestCellCenter - transform.position;
-            if (distance.x < 0 && !IsCellObstacle(transform.position + Vector3.left)) nextCell = transform.position + Vector3.left;
-            else if (distance.x > 0 && !IsCellObstacle(transform.position + Vector3.right)) nextCell = transform.position + Vector3.right;
-            else if (distance.z < 0 && !IsCellObstacle(transform.position + Vector3.back)) nextCell = transform.position + Vector3.back;
-            else if(distance.z > 0 && !IsCellObstacle(transform.position + Vector3.forward)) nextCell = transform.position + Vector3.forward;
+            // Calcula la dirección y la celda objetivo
+            Vector3 direction = GetNextMoveDirection(closestCellCenter);
+            Vector3 nextCell = transform.position + direction;
 
             if (currentTime > thinkTime)
             {
-                Vector3 dir = (nextCell - transform.position).normalized;
-                Quaternion targetRotation = Quaternion.LookRotation(dir);
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
                 transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
 
                 transform.position = Vector3.Lerp(currentPosition, nextCell, moveSpeed);
@@ -65,6 +60,22 @@ public class ChaseSafePlaceAction : Action
         }
 
         return TaskStatus.Success;
+    }
+
+    private Vector3 GetNextMoveDirection(Vector3 targetPosition)
+    {
+        Vector3 distance = targetPosition - transform.position;
+
+        if (distance.x < 0 && !IsCellObstacle(transform.position + Vector3.left))
+            return Vector3.left;
+        else if (distance.x > 0 && !IsCellObstacle(transform.position + Vector3.right))
+            return Vector3.right;
+        else if (distance.z < 0 && !IsCellObstacle(transform.position + Vector3.back))
+            return Vector3.back;
+        else if (distance.z > 0 && !IsCellObstacle(transform.position + Vector3.forward))
+            return Vector3.forward;
+
+        return Vector3.zero;
     }
 
     // Encontrar la celda más cercana al personaje
