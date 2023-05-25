@@ -15,7 +15,7 @@ public class PlacedBombCondition : Conditional
 
     public override TaskStatus OnUpdate()
     {
-        if(!bombController.isEnemyBombActive)
+        if(bombController.isEnemyBombActive)
             return TaskStatus.Success;
         return TaskStatus.Failure;
     }

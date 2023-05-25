@@ -10,7 +10,7 @@ public class ChaseSafePlaceAction : Action
     PlayerMovement playerMovement;
     BombController bombController;
     Grid grid;
-    int length = 2;
+    private int length = 2;
 
     private float moveSpeed = 1.0f;
 
@@ -37,6 +37,8 @@ public class ChaseSafePlaceAction : Action
             Vector3 closestCellCenter = grid.GetCellCenterWorld(grid.WorldToCell(closestCell));
             closestCellCenter.y = 0.725f;
 
+            //StartCoroutine(MoveToTarget(closestCellCenter));
+
             transform.position = Vector3.Lerp(currentPosition, closestCellCenter, moveSpeed);
             if (Vector3.Distance(transform.position, closestCellCenter) <= 0.1f)
                 currentPosition = closestCell;
@@ -45,6 +47,11 @@ public class ChaseSafePlaceAction : Action
 
         return TaskStatus.Success;
     }
+
+    //private IEnumerator MoveToTarget(Vector3 targetPosition)
+    //{
+        
+    //}
 
     // Encontrar la celda más cercana al personaje
     private Vector3Int FindClosestCell(Vector3 currentCell, List<Vector3Int> cells)

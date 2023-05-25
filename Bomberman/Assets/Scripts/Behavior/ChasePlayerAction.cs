@@ -63,6 +63,7 @@ public class ChasePlayerAction : Action
         // Obtener la posición actual
         Vector3 currentPosition = transform.position;
         Vector3 distance = playerCellPosition - currentPosition;
+        if(distance.magnitude < 2.0f) return true;
 
         // Obtiene la direccion de movimiento
         Vector3 primaryDirection, secondaryDirection;

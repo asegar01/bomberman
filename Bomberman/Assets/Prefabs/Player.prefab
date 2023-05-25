@@ -1611,12 +1611,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7547957326751876455}
   - component: {fileID: 7772463304894991614}
-  - component: {fileID: 7772463304894991612}
   - component: {fileID: 7772463304894991611}
   - component: {fileID: 7772463304894991615}
   - component: {fileID: 7772463304894991617}
   - component: {fileID: 7772463304894991618}
-  - component: {fileID: 7772463304894991619}
   - component: {fileID: 1865236349}
   m_Layer: 0
   m_Name: Player
@@ -1664,23 +1662,6 @@ CapsuleCollider:
   m_Height: 1.8841044
   m_Direction: 1
   m_Center: {x: 0, y: 0.95135605, z: 0.023256937}
---- !u!111 &7772463304894991612
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7202500031267086301}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 6874951487019777529, guid: 459a65cf2103e0d4e9146110b8ac69e0, type: 3}
-  m_Animations:
-  - {fileID: 6874951487019777529, guid: 459a65cf2103e0d4e9146110b8ac69e0, type: 3}
-  - {fileID: -4336474662071183980, guid: 459a65cf2103e0d4e9146110b8ac69e0, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &7772463304894991611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1746,26 +1727,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6715155, y: 1.5000001, z: 0.6890273}
   m_Center: {x: 0.0075753527, y: 0.8, z: -0.006761153}
---- !u!95 &7772463304894991619
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7202500031267086301}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &1865236349
 MonoBehaviour:
   m_ObjectHideFlags: 0
