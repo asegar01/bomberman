@@ -8,7 +8,7 @@ public class BombController : MonoBehaviour
     public GameObject bombPrefab;
     private KeyCode inputKey = KeyCode.Space;
     public float bombFuseTime = 3.5f;
-    public int bombsRemaining = 3;
+    public int bombsRemaining = 2;
     PlayerMovement playerMovement;
     private float offset = 0.3f;
     public bool isEnemyBombActive = false;
