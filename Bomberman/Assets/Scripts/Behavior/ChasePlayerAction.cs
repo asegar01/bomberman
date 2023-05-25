@@ -14,9 +14,9 @@ public class ChasePlayerAction : Action
     private Vector3Int currentCell;       // Celda actual en la que se encuentra el enemigo
     private float moveSpeed = 1.0f;
     private float currentTime = 0.0f;
-    private float thinkTime = 2.0f;
-    private float rotationSpeed = 50f;
-    public float timeWait = 10f;
+    private float thinkTime = 1.0f;
+    private float rotationSpeed = 50.0f;
+    public float timeWait = 10.0f;
     private AStarPathfinder pathfinder;
     private Grid grid;
 

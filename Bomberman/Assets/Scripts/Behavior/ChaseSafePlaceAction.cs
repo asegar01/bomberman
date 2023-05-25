@@ -10,9 +10,12 @@ public class ChaseSafePlaceAction : Action
     PlayerMovement playerMovement;
     BombController bombController;
     Grid grid;
+    Vector3 nextCell;
     private int length = 2;
-
+    private float currentTime = 0.0f;
+    private float thinkTime = 0.5f;
     private float moveSpeed = 1.0f;
+    private float rotationSpeed = 50.0f;
 
     public override void OnStart()
     {
@@ -24,6 +27,8 @@ public class ChaseSafePlaceAction : Action
 
     public override TaskStatus OnUpdate()
     {
+        currentTime += Time.deltaTime;
+
         // Obtener la posición actual
         Vector3 currentPosition = transform.position;
         //currentPosition.y += playerMovement.GetHeight() / 2;
@@ -39,7 +44,21 @@ public class ChaseSafePlaceAction : Action
 
             //StartCoroutine(MoveToTarget(closestCellCenter));
 
-            transform.position = Vector3.Lerp(currentPosition, closestCellCenter, moveSpeed);
+            Vector3 distance = closestCellCenter - transform.position;
+            if (distance.x < 0 && !IsCellObstacle(transform.position + Vector3.left)) nextCell = transform.position + Vector3.left;
+            else if (distance.x > 0 && !IsCellObstacle(transform.position + Vector3.right)) nextCell = transform.position + Vector3.right;
+            else if (distance.z < 0 && !IsCellObstacle(transform.position + Vector3.back)) nextCell = transform.position + Vector3.back;
+            else if(distance.z > 0 && !IsCellObstacle(transform.position + Vector3.forward)) nextCell = transform.position + Vector3.forward;
+
+            if (currentTime > thinkTime)
+            {
+                Vector3 dir = (nextCell - transform.position).normalized;
+                Quaternion targetRotation = Quaternion.LookRotation(dir);
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
+
+                transform.position = Vector3.Lerp(currentPosition, nextCell, moveSpeed);
+                currentTime = 0.0f;
+            }
             if (Vector3.Distance(transform.position, closestCellCenter) <= 0.1f)
                 currentPosition = closestCell;
             else return TaskStatus.Running;
@@ -47,11 +66,6 @@ public class ChaseSafePlaceAction : Action
 
         return TaskStatus.Success;
     }
-
-    //private IEnumerator MoveToTarget(Vector3 targetPosition)
-    //{
-        
-    //}
 
     // Encontrar la celda más cercana al personaje
     private Vector3Int FindClosestCell(Vector3 currentCell, List<Vector3Int> cells)
@@ -112,19 +126,9 @@ public class ChaseSafePlaceAction : Action
         GetSafeCellRecursive(position, downCell, safeCells, length - 1);
         GetSafeCellRecursive(position, rightCell, safeCells, length - 1);
         GetSafeCellRecursive(position, leftCell, safeCells, length - 1);
-
-        //// Encontrar la celda segura mas cercana en cada direccion recursivamente
-        //if (!safeCells.Contains(upCell))
-        //    GetSafeCellRecursive(position, upCell, safeCells);
-        //if (!safeCells.Contains(downCell))
-        //    GetSafeCellRecursive(position, downCell, safeCells);
-        //if (!safeCells.Contains(rightCell))
-        //    GetSafeCellRecursive(position, rightCell, safeCells);
-        //if (!safeCells.Contains(leftCell))
-        //    GetSafeCellRecursive(position, leftCell, safeCells);
     }
 
-    private bool IsCellObstacle(Vector3Int cell)
+    private bool IsCellObstacle(Vector3 cell)
     {
         Vector3 cellPositionCx = grid.GetCellCenterWorld(grid.WorldToCell(cell));
         cellPositionCx.y = 1;
@@ -146,15 +150,14 @@ public class ChaseSafePlaceAction : Action
         Vector3 cellPositionCx = grid.GetCellCenterWorld(grid.WorldToCell(cell));
         cellPositionCx.y = 1;
 
-        // Comprobar si hay un obstáculo en la casilla
-
-        Collider[] colliders = Physics.OverlapSphere(cellPositionCx, 0.1f);
-        foreach (Collider collider in colliders)
-        {
-            if (collider.gameObject.layer == LayerMask.NameToLayer("Breakable") ||
-                collider.gameObject.layer == LayerMask.NameToLayer("Unbreakable"))
-                return true;
-        }
+        // Comprobar si hay algun obstaculo en la casilla
+        //Collider[] colliders = Physics.OverlapSphere(cellPositionCx, 0.1f);
+        //foreach (Collider collider in colliders)
+        //{
+        //    if (collider.gameObject.layer == LayerMask.NameToLayer("Breakable") ||
+        //        collider.gameObject.layer == LayerMask.NameToLayer("Unbreakable"))
+        //        return true;
+        //}
 
         return bombController.RangeBomb(cellPositionCx);
     }
