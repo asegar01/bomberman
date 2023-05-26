@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public int destructibleLayer = 6;
     public int indestructibleLayer = 7;
     private float playerHeight;
+    Animation anim;
 
     private Vector3Int currentCell;       // Celda actual en la que se encuentra el jugador
     //private Animation anim;

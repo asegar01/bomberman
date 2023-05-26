@@ -7,7 +7,7 @@ using BehaviorDesigner.Runtime.Tasks;
 public class ChasePlayerAction : Action
 {
     private PlayerMovement playerMovement;
-    private Transform playerTransform;
+    private BombController bombController;
     private Vector3 playerCellPosition;
     private Vector3Int targetCell;
     private Vector3 targetCellCenter;
@@ -23,8 +23,8 @@ public class ChasePlayerAction : Action
 
     public override void OnStart()
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        bombController = GetComponent<BombController>();
         playerCellPosition = playerMovement.GetCurrentCell();
         currentCell = playerMovement.GetGrid().WorldToCell(transform.position);
         grid = playerMovement.GetGrid();
@@ -38,6 +38,9 @@ public class ChasePlayerAction : Action
             return TaskStatus.Success;
 
         MoveCell();
+
+        //if(bombController.RangeBomb(currentCell))
+        //    return TaskStatus.Success;
 
         return TaskStatus.Running;
     }
