@@ -19,26 +19,7 @@ Enemigos controlados por IA: Habrá varios enemigos en el juego, cada uno con un
 Objetivos y obstáculos: El jugador deberá enfrentarse a diferentes obstáculos en el escenario, como paredes, bloques destructibles y trampas. Además, deberá recolectar power-ups que le otorgarán ventajas temporales, como mayor velocidad o mayor rango de explosión.
 
 ## Pruebas y métricas
-
-
-## Ampliaciones
-
-
-## Producción
-
-Las tareas se han realizado y el esfuerzo ha sido repartido entre los autores.
-
-| Estado  |  Tarea  |  Fecha  |  Autores  |  
-|:-:|:--|:-:| :-:|
-| ✔ |  |  |  |
-| ✔ |  |  |  |
-| ✔ |  |  |  |
-| ✔ |  |  |  |
-| ✔ |  |  |  |
-| ✔ |  |  |  |
-| ✔ |  |  |  |
-| ✔ |  |  |  |
-| ✔ |  |  |  |
+https://youtu.be/-STMP8FfwtA
 
 ## Referencias
 
