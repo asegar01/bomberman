@@ -12,7 +12,11 @@ public class DeathController : MonoBehaviour
         // Comprueba si colisiona con la explosion
         if (other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
         {
-            StartCoroutine(RestartScene());
+            if(gameObject.layer == LayerMask.NameToLayer("Player"))
+                StartCoroutine(RestartScene());
+            else if(gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                StartCoroutine(NextScene());
+
         }
     }
 
@@ -26,5 +30,15 @@ public class DeathController : MonoBehaviour
 
         // Reiniciar la escena actual
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private IEnumerator NextScene()
+    {
+        // Pausar completamente la escena
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(restartTime);
+        Time.timeScale = 1f;
+
+        // Cargar la siguiente escena
     }
 }
