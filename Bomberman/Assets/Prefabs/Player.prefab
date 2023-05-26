@@ -1693,7 +1693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombPrefab: {fileID: 5149716609058602329, guid: b7413e5e04231fd4bbe3d4fc3caedbab, type: 3}
   bombFuseTime: 3.5
-  bombsRemaining: 3
+  bombsRemaining: 2
   isEnemyBombActive: 0
   explosionPrefab: {fileID: 3991653085984235134, guid: 3b2c18d0edf8c2e4c8d7194a90942b6c, type: 3}
   explosionDuration: 0.5
@@ -1722,7 +1722,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7202500031267086301}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.6715155, y: 1.5000001, z: 0.6890273}

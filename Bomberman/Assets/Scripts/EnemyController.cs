@@ -19,7 +19,6 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         Vector3 distance = player.transform.position - transform.position;
-        Debug.Log(distance.magnitude);
         if(distance.magnitude <= grid.cellSize.x) playerFound = true;
         else playerFound = false;
     }

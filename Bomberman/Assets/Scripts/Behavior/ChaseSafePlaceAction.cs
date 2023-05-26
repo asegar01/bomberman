@@ -11,7 +11,7 @@ public class ChaseSafePlaceAction : Action
     BombController bombController;
     Grid grid;
     Vector3 nextCell;
-    private int length = 2;
+    private int length = 3;
     private float currentTime = 0.0f;
     private float thinkTime = 0.5f;
     private float moveSpeed = 1.0f;
