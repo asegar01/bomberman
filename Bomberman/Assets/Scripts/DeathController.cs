@@ -40,5 +40,10 @@ public class DeathController : MonoBehaviour
         Time.timeScale = 1f;
 
         // Cargar la siguiente escena
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+            SceneManager.LoadScene(nextSceneIndex);
+        else
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
