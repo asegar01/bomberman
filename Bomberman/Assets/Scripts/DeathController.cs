@@ -2,10 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using BehaviorDesigner.Runtime;
 
 public class DeathController : MonoBehaviour
 {
     private float restartTime = 2f; // Tiempo de espera antes de reiniciar la escena
+
+    //BehaviorTree behaviorTree;
+    //ChasePlayerAction chasePlayerAction;
+
+    private void Start()
+    {
+        //behaviorTree = GetComponent<BehaviorTree>();
+        //chasePlayerAction = behaviorTree.FindTask<ChasePlayerAction>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -42,7 +52,11 @@ public class DeathController : MonoBehaviour
         // Cargar la siguiente escena
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            //chasePlayerAction.thinkTime = 1.0f;
+
             SceneManager.LoadScene(nextSceneIndex);
+        }
         else
             SceneManager.LoadScene("Menu");
     }

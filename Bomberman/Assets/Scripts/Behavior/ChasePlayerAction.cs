@@ -7,16 +7,16 @@ using BehaviorDesigner.Runtime.Tasks;
 public class ChasePlayerAction : Action
 {
     private PlayerMovement playerMovement;
-    private BombController bombController;
     private Vector3 playerCellPosition;
     private Vector3Int targetCell;
     private Vector3 targetCellCenter;
     private Vector3Int currentCell;
     private float moveSpeed = 1.0f;
     private float currentTime = 0.0f;
-    private float thinkTime = 1.0f;
+
+    public float thinkTime = 1.0f;
+
     private float rotationSpeed = 50.0f;
-    public float timeWait = 10.0f;
     private float offset = 0.3f;
     private AStarPathfinder pathfinder;
     private Grid grid;
@@ -24,7 +24,6 @@ public class ChasePlayerAction : Action
     public override void OnStart()
     {
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        bombController = GetComponent<BombController>();
         playerCellPosition = playerMovement.GetCurrentCell();
         currentCell = playerMovement.GetGrid().WorldToCell(transform.position);
         grid = playerMovement.GetGrid();
@@ -38,9 +37,6 @@ public class ChasePlayerAction : Action
             return TaskStatus.Success;
 
         MoveCell();
-
-        //if(bombController.RangeBomb(currentCell))
-        //    return TaskStatus.Success;
 
         return TaskStatus.Running;
     }
@@ -128,8 +124,33 @@ public class ChasePlayerAction : Action
         return false;
     }
 
-    private Vector3 GetClosestCell(Vector3Int startCell, Vector3 targetPosition)
-    {
-        return new Vector3();
-    }
+    //private Vector3 GetClosestCell(Vector3Int startCell, Vector3 targetPosition)
+    //{
+    //    Grid grid = playerMovement.GetGrid();
+    //    Vector3Int targetCell = grid.WorldToCell(targetPosition);
+    //    List<Vector3Int> cellsToCheck = new List<Vector3Int>();
+
+    //    // Agregar celdas alrededor de la celda de destino
+    //    cellsToCheck.Add(targetCell + Vector3Int.up);
+    //    cellsToCheck.Add(targetCell + Vector3Int.down);
+    //    cellsToCheck.Add(targetCell + Vector3Int.left);
+    //    cellsToCheck.Add(targetCell + Vector3Int.right);
+
+    //    Vector3 closestCellCenter = Vector3.zero;
+    //    float closestDistance = Mathf.Infinity;
+
+    //    foreach (Vector3Int cell in cellsToCheck)
+    //    {
+    //        Vector3 cellCenter = grid.GetCellCenterWorld(cell);
+    //        float distance = Vector3.Distance(startCell, cellCenter);
+
+    //        if (distance < closestDistance)
+    //        {
+    //            closestDistance = distance;
+    //            closestCellCenter = cellCenter;
+    //        }
+    //    }
+
+    //    return closestCellCenter;
+    //}
 }
