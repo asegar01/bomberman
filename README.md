@@ -31,10 +31,14 @@ El objetivo del enemigo es eliminar al jugador. Para ello, analizan constantemen
 Se han implementado dos niveles en el juego para proporcionar una experiencia progresiva y desafiante al jugador.
 
 ### Nivel 1: 
-Este nivel puede ser accedido a través del menú y sirve como introducción al juego ya que presenta un escenario relativamente sencillo. El jugador se enfrentará a un enemigo controlado por IA con comportamiento básico. Este nivel se centra en familiarizarse con los controles, las mecánicas básicas y la interacción con los obstáculos del escenario. El mapa es de tamaño moderado y cuenta con un número limitado de obstáculos destruíbles.
+Este nivel puede ser accedido a través del menú y sirve como introducción al juego ya que presenta un escenario relativamente sencillo. El jugador se enfrentará a un enemigo controlado por IA con comportamiento básico. Este nivel se centra en familiarizarse con los controles, las mecánicas básicas y la interacción con los obstáculos del escenario. El mapa es de tamaño moderado y cuenta con un número limitado de obstáculos destruibles.
+
+![Captura de pantalla 2023-05-31 152637](https://github.com/asegar01/IAV-SegarraChacon/assets/82326232/215cc16d-3525-45f8-9251-801811de52f1)
 
 ### Nivel 2: 
-Puede ser accedido al completar el primer nivel y representa un aumento en la dificultad y un escenario más desafiante. El jugador se enfrentará a un enemigo controlado por IA con mayor capacidad de reacción. Además, el mapa es más grande y cuenta con una mayor cantidad de obstáculos destruíbles.
+Puede ser accedido al completar el primer nivel y representa un aumento en la dificultad y un escenario más desafiante. El jugador se enfrentará a un enemigo controlado por IA con mayor capacidad de reacción. Además, el mapa es más grande y cuenta con una mayor cantidad de obstáculos destruibles.
+
+![Captura de pantalla 2023-05-31 152722](https://github.com/asegar01/IAV-SegarraChacon/assets/82326232/529f160b-19f7-4bfd-947c-8d7516a7c0d5)
 
 ## Pruebas y métricas
 https://youtu.be/-STMP8FfwtA
@@ -45,3 +49,4 @@ Los recursos de terceros utilizados son de uso público.
 
 - *AI for Games*, Ian Millington.
 - https://docs.unity3d.com/bolt/1.4/manual/index.html
+- https://es.wikipedia.org/wiki/Bomberman
