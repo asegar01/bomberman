@@ -11,7 +11,7 @@ La práctica consiste en desarrollar un prototipo de Bomberman utilizando inteli
 Para los enemigos se usará un árbol de comportamiento.
 
 ## Punto de partida
-El proyecto de Bomberman se ha desarrollado desde cero, aprovechando algunos recursos externos para acelerar el desarrollo de ciertos elementos del juego.
+El proyecto de Bomberman se ha desarrollado desde cero, aprovechando algunos recursos externos -assets- para acelerar el desarrollo de ciertos elementos del juego.
 
 ## Mecánicas del juego
 Movimiento por celdas: El juego se desarrollará en un escenario basado en cuadrículas, donde tanto el jugador como los enemigos se moverán de manera discreta de una celda a otra. Se utilizará un grid para gestionar la posición y colisión de los personajes y obstáculos en el escenario.
@@ -26,6 +26,15 @@ Obstáculos: El jugador deberá enfrentarse a diferentes obstáculos en el escen
 El objetivo del enemigo es eliminar al jugador. Para ello, analizan constantemente la situación actual del juego haciendo uso de un árbol de comportamiento. Consideran factores como la ubicación del jugador, la existencia de obstáculos y la presencia de bombas. Con base en esta información, ajustan su comportamiento y toman decisiones estratégicas para aumentar sus posibilidades de eliminar al jugador.
 
 ![Captura de pantalla 2023-05-31 120749](https://github.com/asegar01/IAV-SegarraChacon/assets/82326232/86742c35-1e23-46f1-9513-36f75219af8a)
+
+El árbol de comportamiento del enemigo está basado en las siguientes clases:
+
+- **EndangeredCondition :** Condición que indica si se encuentra amenazado por la explosión de alguna bomba.
+- **ChaseSafePlaceAction :** Acción que busca un lugar seguro en un área alrededor de su posición.
+- **ChasePlayerAction :** Acción que busca al jugador, desplazándose hacia la posición del mismo.
+- **PlayerFoundCondiction :** Condición que indica si se ha encontrado al jugador.
+- **PlaceBombAction :** Acción que coloca una bomba en la posición actual.
+- **PlacedBombCondition :** Condición que indica si se ha colocado una bomba.
 
 ## Implementación de niveles
 Se han implementado dos niveles en el juego para proporcionar una experiencia progresiva y desafiante al jugador.
