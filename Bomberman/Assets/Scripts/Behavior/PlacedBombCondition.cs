@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 
-// Indica si se encuentra amenzado por la explosion de alguna bomba
+// Indica si se ha colocado una bomba
 public class PlacedBombCondition : Conditional
 {
     BombController bombController;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 
-// Busca un lugar seguro
+// Busca un lugar seguro en un area alrededor de su posicion
 public class ChaseSafePlaceAction : Action
 {
     GameObject player;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 
-// Busca al jugador
+// Busca al jugador, desplazandose hacia la posicion del mismo
 public class ChasePlayerAction : Action
 {
     private PlayerMovement playerMovement;
